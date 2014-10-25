@@ -95,6 +95,12 @@ define([ 'angular', 'require' ], function(angular, require) {
         };
 
         $scope.updateCredentials = function() {
+
+          if($scope.credentials.password != $scope.credentials.password2) {
+            Notifications.addError({ status: 'Password', message: 'New passwords must match', exclusive: true });
+            return;
+          }          
+
           var pathParams = { userId: $scope.encodedUserId },
               params = {authenticatedUserPassword: $scope.credentials.authenticatedUserPassword, password: $scope.credentials.password };
 
